@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb'
 
-const uri = "mongodb+srv://shivamsagar022:9988419043@socialdoze.9pnelwl.mongodb.net/blog?retryWrites=true&w=majority"
-const options = {
+const uri = process.env.NEXT_PUBLIC_MONGO_URI
+const options:any = {
     useUnifiedTopology: true,
     useNewUrlParser: true,
 }
