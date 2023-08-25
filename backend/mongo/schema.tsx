@@ -4,6 +4,7 @@ import { Document, Schema, Types } from 'mongoose';
 const BlogSchema = new mongoose.Schema({
     title: { type: String, required: true },
     content: { type: String, required: true },
+    slug: { type: String, required: true},
     category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
     subcategory: { type: mongoose.Schema.Types.ObjectId, ref: 'Subcategory', required: false },
     date: { type: Date, required: false },

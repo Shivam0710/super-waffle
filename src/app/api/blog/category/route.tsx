@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 import getSampleData from '../../../../../backend/getSampleData'
-import { addCategory } from "../../../../../backend/mongo/Category";
+import { addCategory, getAllCategories } from "../../../../../backend/mongo/Category";
 
 export type AddCategoryRequest = {
   name: string,
@@ -16,6 +16,20 @@ export async function POST(
   res: Response
 ) {
   const request: AddCategoryRequest|undefined = await req.json();
-  const result = addCategory(request)
+  const result = await addCategory(request)
   return NextResponse.json(result);
+}
+
+export async function GET(
+  req: Request,
+  res: Response
+) {
+  let queryParams = new URL(req.url).searchParams;
+  let limit = 0;
+  if(queryParams.get('limit')) {
+    limit = parseInt(queryParams.get('limit')||"0");
+  }
+
+  const result = await getAllCategories(limit)
+  return NextResponse.json(result)
 }

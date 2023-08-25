@@ -1,7 +1,7 @@
-import { CategoryModel } from './schema'
+import { CategoryModel, BlogModel } from './schema'
 import clientPromise from './mongoClient';
 import { ObjectId } from 'mongodb'
-import { AddCategoryRequest } from '@/app/api/blog/addCategory/route';
+import { AddCategoryRequest } from '@/app/api/blog/category/route';
 
 const COLLECTION_NAME = "category"
 
@@ -24,6 +24,24 @@ export async function getCategoryByName(categoryName: string) {
 
   const entries = db.collection(COLLECTION_NAME)
   const result = entries.findOne({ name: categoryName })
+  return result;
+}
+
+export async function getAllCategories(limit: number) {
+  const client = await clientPromise
+  const db = client.db();
+  const entries = db.collection(COLLECTION_NAME)
+  const result = await entries.find({}).toArray()
+  console.log(result)
+  return result
+}
+
+export async function getBlogsByCategory(categoryId: string) {
+  const client = await clientPromise;
+  const db = client.db();
+  const entries = db.collection('blog')
+  const result = await entries.find({ category: new ObjectId(categoryId) }).toArray()
+  console.log(result)
   return result;
 }
 

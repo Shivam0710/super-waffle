@@ -3,9 +3,14 @@ import { addBlog } from "../../../../../backend/mongo/Blog";
 
 export type AddBlogRequest = {
     title: string,
+    slug: string,
     content: string,
-    categoryId: string,
-    subcategoryId: string,
+    category: string,
+    subcategory: string,
+    seo_title?: string,
+    seo_description?: string,
+    og_title?: string,
+    og_description?: string
 }
 
 export async function POST(req: Request, res: Response) {
