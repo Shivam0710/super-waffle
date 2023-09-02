@@ -1,7 +1,8 @@
 import { CategoryModel, BlogModel } from './schema'
 import clientPromise from './mongoClient';
 import { ObjectId } from 'mongodb'
-import { AddCategoryRequest } from '@/app/api/blog/category/route';
+import { AddCategoryRequest, UpdateCategoryRequest } from '@/app/api/blog/category/route';
+import { Category } from '@/types/Category';
 
 const COLLECTION_NAME = "category"
 
@@ -32,7 +33,6 @@ export async function getAllCategories(limit: number) {
   const db = client.db();
   const entries = db.collection(COLLECTION_NAME)
   const result = await entries.find({}).toArray()
-  console.log(result)
   return result
 }
 
@@ -41,7 +41,6 @@ export async function getBlogsByCategory(categoryId: string) {
   const db = client.db();
   const entries = db.collection('blog')
   const result = await entries.find({ category: new ObjectId(categoryId) }).toArray()
-  console.log(result)
   return result;
 }
 
@@ -52,4 +51,26 @@ export async function getCategoryById(categoryId?: string) {
   const entries = db.collection(COLLECTION_NAME)
   const result = entries.findOne({ _id: new ObjectId(categoryId)})
   return result;
+}
+
+export async function updateCategory(data?: UpdateCategoryRequest) {
+  const client = await clientPromise;
+  const db = client.db();
+
+  const entries = db.collection(COLLECTION_NAME);
+  
+  const updateObject: Partial<Category> = {
+    name: data?.name,
+    seo_title: data?.seo_title,
+    seo_description: data?.seo_description,
+    og_title: data?.og_title,
+    og_description: data?.og_description
+  };
+  
+  const result = await entries.findOneAndUpdate(
+      { _id: new ObjectId(data?.id) },
+      { $set: updateObject },
+  );
+
+  return result.value;
 }

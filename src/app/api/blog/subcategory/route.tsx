@@ -1,16 +1,26 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 import { getCategoryById, getCategoryByName } from "../../../../../backend/mongo/Category";
-import { addSubcategory, getAllSubCategories } from "../../../../../backend/mongo/Subcategory";
+import { addSubcategory, getAllSubCategories, updateSubCategory } from "../../../../../backend/mongo/Subcategory";
 
 export type AddSubCategoryRequest = {
-    name: string,
-    parentCategoryId: string,
-    seo_title?: string,
-    seo_description?: string,
-    og_title?: string,
-    og_description?: string,
-  }
+  name: string,
+  parentCategoryId: string,
+  seo_title?: string,
+  seo_description?: string,
+  og_title?: string,
+  og_description?: string,
+}
+
+export type UpdateSubCategoryRequest = {
+  name: string,
+  parentCategoryId: string,
+  seo_title?: string,
+  seo_description?: string,
+  og_title?: string,
+  og_description?: string,
+  id: string
+}
 
 export async function POST(
     req: Request,
@@ -33,4 +43,10 @@ export async function GET(
   
     const result = await getAllSubCategories(limit)
     return NextResponse.json(result)
+  }
+
+  export async function PUT(req: Request, res: Response) {
+    const request: UpdateSubCategoryRequest|undefined = await req.json();
+    const result = await updateSubCategory(request);
+    return NextResponse.json(result);
   }

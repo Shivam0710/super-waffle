@@ -25,7 +25,7 @@ export default function SubCategory() {
 
 	const fieldsConfig = [
 		{ label: "Name", name: "name", type: "text", required: true },
-		{ label: "Select Category", name: "parentCategory", type: "select", options: getOptionsFromCategory(categories), required: true },
+		{ label: "Select Category", name: "parentCategoryId", type: "select", options: getOptionsFromCategory(categories), required: true },
 		{ label: "Seo Title", name: "seo_title", type: "text", required: false },
 		{ label: "Seo Description", name: "seo_description", type: "text", required: false },
 		{ label: "Og Title", name: "og_title", type: "text", required: false },

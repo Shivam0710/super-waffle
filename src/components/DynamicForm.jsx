@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const DynamicForm = ({ fieldsConfig, onSubmit }) => {
-  const initialFormData = {};
-  fieldsConfig.forEach((field) => {
-    initialFormData[field.name] = field.defaultValue || '';
-  });
-
-  const [formData, setFormData] = useState(initialFormData);
+  const [formData, setFormData] = useState({});
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -18,6 +13,16 @@ const DynamicForm = ({ fieldsConfig, onSubmit }) => {
     onSubmit(formData);
   };
 
+  useEffect(() => {
+    const initialFormData = {};
+    fieldsConfig.forEach((field) => {
+      initialFormData[field.name] = field.defaultValue || '';
+    });
+
+    setFormData(initialFormData)
+  }, [fieldsConfig])
+
+  console.log(fieldsConfig)
   return (
     <form onSubmit={handleSubmit} className='flex flex-col gap-6 '>
       {fieldsConfig.map((field, index) => (

@@ -8,6 +8,7 @@ const BlogSchema = new mongoose.Schema({
     category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
     subcategory: { type: mongoose.Schema.Types.ObjectId, ref: 'Subcategory', required: false },
     date: { type: Date, required: false },
+    blogCoverPic: { type: String, required: true},
     seo_title: {
         type: String,
         required: false,

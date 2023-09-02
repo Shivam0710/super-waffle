@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 import getSampleData from '../../../../../backend/getSampleData'
-import { addCategory, getAllCategories } from "../../../../../backend/mongo/Category";
+import { addCategory, getAllCategories, updateCategory } from "../../../../../backend/mongo/Category";
 
 export type AddCategoryRequest = {
   name: string,
@@ -9,6 +9,15 @@ export type AddCategoryRequest = {
   seo_description?: string,
   og_title?: string,
   og_description?: string,
+}
+
+export type UpdateCategoryRequest = {
+  name: string,
+  seo_title?: string,
+  seo_description?: string,
+  og_title?: string,
+  og_description?: string,
+  id: string
 }
 
 export async function POST(
@@ -32,4 +41,10 @@ export async function GET(
 
   const result = await getAllCategories(limit)
   return NextResponse.json(result)
+}
+
+export async function PUT(req: Request, res: Response) {
+  const request: UpdateCategoryRequest|undefined = await req.json();
+  const result = await updateCategory(request);
+  return NextResponse.json(result);
 }
