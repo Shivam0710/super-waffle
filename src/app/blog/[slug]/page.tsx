@@ -7,7 +7,6 @@ import { modifyBlogContent } from '../../../../helper/utils';
 export default async function Blog() {
   const headersList = headers();
   const activePath = headersList.get("x-invoke-path");
-  console.log(activePath)
   const slug = activePath?.split("/")[2]
   let blog = null;
   if(slug) {

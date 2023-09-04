@@ -1,12 +1,10 @@
 import axios from "axios"
-// import { useEffect } from "react";
 
 export default async function AppSideBar({ }) {
     let categories = await getAllCategories();
     return (
-        <div className="w-2/12 bg-[#1D1D41] h-screen">
+        <div className="w-2/12 bg-[#1D1D41]">
             <p className="font-bold text-2xl p-7 text-center">SocialDoze</p>
-            {/* <p>{JSON.stringify(categories)}</p> */}
             { categories?.map((category, index) => (
                 <a className="py-4 px-5 text-sm flex items-center gap-3 cursor-pointer" key={index}> 
                     <img className="h-6" src="/generic.png" alt="" />

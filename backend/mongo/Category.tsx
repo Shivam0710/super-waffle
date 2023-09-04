@@ -41,6 +41,8 @@ export async function getBlogsByCategory(categoryId: string) {
   const db = client.db();
   const entries = db.collection('blog')
   const result = await entries.find({ category: new ObjectId(categoryId) }).toArray()
+  console.log(result)
+  console.log("result")
   return result;
 }
 

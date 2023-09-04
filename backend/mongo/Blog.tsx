@@ -67,7 +67,9 @@ export async function updateBlog(data?: UpdateBlogRequest) {
 }
 
 function getCoverPicFromBlogContent(blogContent: string) {
+  console.log(blogContent)
   const extractedMatches = blogContent?.match(/####YoutubeVideo=(.*?)####/g);
+  console.log(extractedMatches)
   const randomVideoId = extractedMatches?.[Math.floor(Math.random()*extractedMatches.length)]?.split("/")[4].replace("####", "");
   const coverpic = `https://img.youtube.com/vi/${randomVideoId}/maxresdefault.jpg`
   return coverpic

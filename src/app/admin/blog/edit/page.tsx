@@ -62,7 +62,7 @@ export default function EditBlog({ params, searchParams }: { params: { slug: str
 
 
     return ( blog &&
-        <div className="p-20">
+        <div className="p-20 grow">
             <h3 className="font-bold text-3xl mb-5"> Edit Blog </h3>
             <section className='mb-10'>
                 <Editor

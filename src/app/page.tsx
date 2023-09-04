@@ -5,7 +5,7 @@ import Content from "../components/Content";
 export default function Home() {
   return (
     <main className="flex flex-row">
-      <AppSideBar />
+      {/* <AppSideBar /> */}
       <Content />    
     </main>
   )

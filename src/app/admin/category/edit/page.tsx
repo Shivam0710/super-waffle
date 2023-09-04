@@ -2,7 +2,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import DynamicForm from '../../../../components/DynamicForm'
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation";
 
 export default function EditCategory({ params, searchParams }: { params: { slug: string }, searchParams?: { [key: string]: string | string[] | undefined }}) {
     const router = useRouter()
@@ -39,7 +39,7 @@ export default function EditCategory({ params, searchParams }: { params: { slug:
     }
 
     return (
-        <div className="p-20">
+        <div className="p-20 grow">
             <h3 className="font-bold text-3xl mb-5"> Edit Blog </h3>
             <section className='mb-10'>
                 <DynamicForm 
