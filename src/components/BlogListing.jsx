@@ -1,7 +1,12 @@
 import React from 'react'
 
 export default function BlogListing({blogs}) {
-    console.log(blogs)
+    if(blogs.length === 0) return (
+        <div className='flex justify-center items-center h-1/2'>
+            <p className='text-center text-2xl font-medium'>No blogs found</p>
+        </div>
+    )
+
     return (
         <div className='flex mt-12 flex-wrap gap-6'>
             { blogs.map((blog, index) => {

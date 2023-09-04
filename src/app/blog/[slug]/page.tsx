@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { headers } from "next/headers";
 import React from 'react'
 import axios from 'axios';
@@ -19,10 +18,10 @@ export default async function Blog() {
 
   if(await !blog) return null
   return (
-    <div>
-      <p>
+    <div className='grow p-7 bg-[#11102E]'>
+      <h1 className='text-xl font-bold'>
         {blog.title}
-      </p>
+      </h1>
       <section 
         dangerouslySetInnerHTML={{__html: blog.content}}
         className='blog-content'

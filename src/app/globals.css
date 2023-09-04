@@ -28,6 +28,7 @@ body {
 
 .blog-content iframe {
   border-radius: 8px;
+  margin-bottom: 16px;
 }
 
 @layer utilities {
@@ -43,4 +44,15 @@ body {
         scrollbar-width: none;  /* Firefox */
     }
   }
+}
+
+
+
+/* -------------BLOG CONTENT CSS-------------- */
+.blog-content {
+  margin-top: 16px;
+}
+
+.blog-content p {
+  margin-bottom: 8px;
 }

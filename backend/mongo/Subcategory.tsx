@@ -46,6 +46,15 @@ export async function getSubCategoryById(subCategoryId?: string) {
     return result;
 }
 
+export async function getSubcategoriesByCategory(categoryId: string) {
+    const client = await clientPromise
+    const db = client.db();
+  
+    const entries = db.collection(COLLECTION_NAME)
+    const result = entries.find({ parentCategory: new ObjectId(categoryId) }).toArray()
+    return result;
+}
+
 export async function updateSubCategory(data?: UpdateSubCategoryRequest) {
     const client = await clientPromise;
     const db = client.db();
