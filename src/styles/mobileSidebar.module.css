@@ -1,0 +1,27 @@
+/* Hamburger menu styles */
+.hamburgerMenu {
+	display: flex;
+	flex-direction: column;
+	cursor: pointer;
+}
+
+.hamburgerBar {
+	width: 30px;
+	height: 3px;
+	background-color: #333;
+	margin: 3px 0;
+	transition: 0.4s;
+}
+
+/* Cross icon styles */
+.open .hamburgerBar:nth-child(1) {
+	transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.open .hamburgerBar:nth-child(2) {
+	opacity: 0;
+}
+
+.open .hamburgerBar:nth-child(3) {
+	transform: rotate(45deg) translate(-5px, -6px);
+}
