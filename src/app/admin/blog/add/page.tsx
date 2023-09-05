@@ -56,7 +56,7 @@ export default function Blog() {
     }
 
     return (
-        <div className='bg-gray-600 p-20 font-bold grow'>
+        <div className='bg-gray-600 p-20 font-bold grow w-screen'>
             <h3 className='text-xl mb-10'> Add blog </h3>
             <section className='mb-10'>
                 <Editor

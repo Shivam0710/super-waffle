@@ -48,7 +48,7 @@ export default function EditSubcategory({ params, searchParams }: { params: { sl
     }
 
     return (
-        <div className="p-20 grow">
+        <div className="p-20 grow w-screen">
             <h3 className="font-bold text-3xl mb-5"> Edit Subcategory </h3>
             <section className='mb-10'>
                 <DynamicForm 

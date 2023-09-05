@@ -6,7 +6,7 @@ export default async function blog() {
     console.log(blogs)    
 
     return (
-        <div className="p-20 grow">
+        <div className="p-20 grow w-screen">
            <h3 className="font-bold text-2xl text-white mb-10 flex justify-between"> 
 		   		<span>
 					All Blogs 

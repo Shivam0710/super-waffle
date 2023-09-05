@@ -39,7 +39,7 @@ export default function SubCategory() {
 	}
 
 	return (
-		<div className='bg-white h-screen flex justify-center align-middle items-center p-20 grow'>
+		<div className='bg-white h-screen flex justify-center align-middle items-center p-20 grow w-screen'>
 			<div className='bg-slate-600 p-10 flex gap-10 flex-col rounded-lg'>
 				<h1> Add a sub category </h1>
                 { loading ?
