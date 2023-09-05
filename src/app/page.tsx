@@ -78,7 +78,7 @@ const subcategories = [
 export default async function Home() {
   const blogs = await getAllBlogs();
   return (
-    <main className="flex flex-row">
+    <main className="overflow-hidden">
       <Content 
         subcategories={subcategories}
         blogs={blogs}

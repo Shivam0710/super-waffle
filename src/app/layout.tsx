@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <div className='flex'>
+        <div className='grid grid-cols-[1fr,auto]'>
           { showAppLayout && <AppSideBar />}
           {children}
         </div>

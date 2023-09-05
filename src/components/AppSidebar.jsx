@@ -6,7 +6,7 @@ export default async function AppSideBar({ }) {
     let categories = await getAllCategories();
     // return (<MobileSidebar />)
     return (
-        <div className="w-2/12 bg-[#1D1D41] min-w-[200px]">
+        <div className="bg-[#1D1D41] min-w-[200px]">
             <p className="font-bold text-2xl p-7 text-center">SocialDoze</p>
             { categories?.map((category, index) => (
                 <a href={`/category/${category.name.split(" ").join("-")}`} className="py-4 px-5 text-sm flex items-center gap-3 cursor-pointer" key={index}> 

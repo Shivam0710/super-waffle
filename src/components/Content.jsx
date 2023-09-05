@@ -4,7 +4,7 @@ import BlogListing from './BlogListing'
 
 export default async function Content({ blogs, subcategories, title }) {
     return (
-        <div className='lg:w-10/12 bg-[#11102E] p-7 min-w-full min-h-screen'>
+        <div className='bg-[#11102E] p-7 min-h-screen'>
             <h3 className='text-2xl font-medium'> {title} </h3>
             <SubcategoryCarousel 
             subcategories={subcategories}
