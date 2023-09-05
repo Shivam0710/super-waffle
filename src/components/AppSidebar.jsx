@@ -23,7 +23,7 @@ export default async function AppSideBar({ }) {
 
 async function getAllCategories() {
     try {
-        const response = await axios.get("http://localhost:3000/api/blog/category");
+        const response = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + "/api/blog/category");
         return response.data;
     } catch (error) {
         console.error("Error fetching categories:", error);

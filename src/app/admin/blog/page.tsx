@@ -34,6 +34,6 @@ export default async function blog() {
 }
 
 async function getAllBlogs() {
-    let blogs = (await axios.get("http://localhost:3000/api/blog/blog")).data
+    let blogs = (await axios.get(process.env.NEXT_PUBLIC_BASE_URL + "/api/blog/blog")).data
     return blogs.blogs;
 }

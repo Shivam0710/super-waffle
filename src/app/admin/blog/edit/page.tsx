@@ -107,7 +107,7 @@ async function getAllData(slug: any) {
 }
 
 async function getBlog(slug: any|undefined) {
-    let blog = (await axios.get(`http://localhost:3000/api/blog/getBlogBySlug?slug=${slug}`)).data
+    let blog = (await axios.get(process.env.NEXT_PUBLIC_BASE_URL + `/api/blog/getBlogBySlug?slug=${slug}`)).data
     return blog.blog
 }
 

@@ -4,7 +4,7 @@ import BlogListing from './BlogListing'
 
 export default async function Content({ blogs, subcategories, title }) {
     return (
-        <div className='bg-[#11102E] p-7 min-h-screen'>
+        <div className='bg-[#11102E] p-7 min-h-screen w-full'>
             <h3 className='text-2xl font-medium'> {title} </h3>
             <SubcategoryCarousel 
             subcategories={subcategories}
@@ -18,7 +18,7 @@ export default async function Content({ blogs, subcategories, title }) {
 
 
 async function getAllBlogs() {
-    const response = await fetch('http://localhost:3000/api/blog/blog');
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/blog/blog');
     const data = await response.json();
     return data.blogs;
 }

@@ -9,7 +9,7 @@ export default async function Blog() {
   const slug = activePath?.split("/")[2]
   let blog = null;
   if(slug) {
-    blog = await axios.get(`http://localhost:3000/api/blog/getBlogBySlug?slug=${slug}`);
+    blog = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + `/api/blog/getBlogBySlug?slug=${slug}`);
     if(await blog && await blog.data && await blog.data.blog) {
       blog = await blog.data.blog
       blog.content = await modifyBlogContent(blog.content)

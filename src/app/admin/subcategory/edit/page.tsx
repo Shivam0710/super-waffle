@@ -68,7 +68,7 @@ async function getAllData(id: any) {
 }
 
 async function getSubcategory(id: any|undefined) {
-    let subcategory = (await axios.get(`http://localhost:3000/api/blog/subcategory/id?id=${id}`)).data
+    let subcategory = (await axios.get(process.env.NEXT_PUBLIC_BASE_URL + `/api/blog/subcategory/id?id=${id}`)).data
     return subcategory
 }
 
