@@ -4,7 +4,7 @@ import MobileSidebar from './MobileSidebar'
 
 export default async function AppSideBar({ }) {
     let categories = await getAllCategories();
-    // return (<MobileSidebar />)
+    return (<MobileSidebar categories={categories} />)
     return (
         <div className="bg-[#1D1D41] min-w-[200px]">
             <p className="font-bold text-2xl p-7 text-center">SocialDoze</p>

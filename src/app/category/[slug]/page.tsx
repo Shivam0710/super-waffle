@@ -20,7 +20,7 @@ export default async function Category() {
     }
 
     return (
-        <main className="flex flex-row grow min-h-screen">
+        <main className="flex flex-row grow min-h-screen w-screen">
             <Content 
                 subcategories={subcategories}
                 blogs={blogs}
