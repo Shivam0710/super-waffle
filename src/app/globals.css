@@ -29,6 +29,15 @@ body {
 .blog-content iframe {
   border-radius: 8px;
   margin-bottom: 16px;
+  height: 400px;
+  width: 400px;
+}
+
+@media screen and (max-width: 768px) {
+  .blog-content iframe {
+    height: 100%;
+    width: 100%;
+  }
 }
 
 @layer utilities {

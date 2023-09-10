@@ -6,7 +6,7 @@ export function modifyBlogContent(blogContent: string) {
 
     // Replace all occurrences of the matched content with the replacement iframe
     const finalContent = inputString.replace(regex, (match, youtubeURL) => {
-        const replacement = `<iframe src="${youtubeURL}" height="400" width="400"></iframe>`;
+        const replacement = `<iframe src="${youtubeURL}"></iframe>`;
         return replacement;
     });
 

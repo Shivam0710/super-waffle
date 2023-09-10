@@ -18,7 +18,7 @@ export default async function Blog() {
 
   if(await !blog) return null
   return (
-    <div className='grow p-7 bg-[#11102E]'>
+    <div className='grow p-7 bg-[#11102E] min-h-screen'>
       <h1 className='text-xl font-bold'>
         {blog.title}
       </h1>

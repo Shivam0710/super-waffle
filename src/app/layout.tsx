@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <div className='grid grid-cols-[auto,1fr]'>
+        <div className='lg:grid lg:grid-cols-[auto,1fr] min-h-screen'>
           { showAppLayout && <AppSideBar />}
           {children}
         </div>
