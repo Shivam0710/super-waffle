@@ -76,7 +76,8 @@ const subcategories = [
 ];
 
 export default async function Home() {
-  const blogs = await getAllBlogs();
+  const {blogs, subcategories } = await fetchData();
+  console.log(blogs,subcategories)
   return (
     <main className="overflow-hidden">
       <Content 
@@ -88,8 +89,25 @@ export default async function Home() {
   )
 }
 
+async function fetchData() {
+    try {
+        const blogs = await getAllBlogs();
+        const subcategories = await getAllSubCategories();
+        return await { blogs, subcategories }
+    } catch(err) {
+        console.error('Error fetching data:', err);
+        return {}
+    }
+}
+
 async function getAllBlogs() {
   const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/blog/blog');
   const data = await response.json();
   return data.blogs;
+}
+
+async function getAllSubCategories() {
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/blog/subcategory');
+    const data = await response.json();
+    return data
 }

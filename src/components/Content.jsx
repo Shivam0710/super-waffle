@@ -6,9 +6,11 @@ export default async function Content({ blogs, subcategories, title }) {
     return (
         <div className='bg-[#11102E] p-7 min-h-screen w-full'>
             <h3 className='text-2xl font-medium'> {title} </h3>
-            <SubcategoryCarousel 
-            subcategories={subcategories}
-            />
+            { subcategories &&
+                <SubcategoryCarousel 
+                subcategories={subcategories}
+                />
+            }
             <BlogListing 
                 blogs={blogs}
             />
