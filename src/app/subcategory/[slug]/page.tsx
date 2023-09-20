@@ -1,29 +1,23 @@
 import Content from "@/components/Content";
 import axios from "axios";
-import { headers } from "next/headers";
 
-export default async function Subcategory({ params, searchParams }: {
-    params: { slug: string };
-    searchParams?: { [key: string]: string | string[] | undefined };
+export async function generateMetadata({ searchParams }: {
+    searchParams?: { [key: string]: string | string[] | undefined }
+}) {
+    let subcategory = searchParams?.id || ""
+    const subCategory = await getSubcategoryByID(subcategory)
+    return {
+        title: subCategory.seo_title,
+        description: subCategory.seo_description
+    }
+}
+
+export default async function Subcategory({ searchParams }: {
+    searchParams?: { [key: string]: string | string[] | undefined }
   }) {
-    const headersList = headers();
-    const activePath = headersList.get("x-invoke-path");
-    let slug = activePath?.split("/")[2]
-    let subcategories:any = []
     let resp = await fetchData(searchParams?.id)
     let blogs = resp?.blogs
     let subCategory = resp?.subCategory
-    // if(slug) {
-    //     try {
-    //         slug = slug.split("-").join(" ")
-    //         let blogsResponse:any = await getBlogsByCategory(slug)
-    //         blogs = blogsResponse
-    //         subcategories = await getSubcategoriesByCategory(blogsResponse[0].category)
-    //     } catch(err) {
-    //         console.log(err)
-    //     }
-    // }
-    // return <h1> helo </h1>
 
     return (
         <main className="flex flex-row grow min-h-screen w-screen">
@@ -55,7 +49,7 @@ async function getBlogsBySubcategoryId(subCategoryId: string) {
     return []
 }
 
-async function getSubcategoryByID(subCategoryId: string) {
+async function getSubcategoryByID(subCategoryId: any) {
     let subcategory = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + `/api/blog/subcategory/id?id=${subCategoryId}`)
     if(await subcategory && await subcategory.data) {
         return subcategory.data
@@ -63,11 +57,3 @@ async function getSubcategoryByID(subCategoryId: string) {
 
     return null
 }
-
-// async function getBlogsByCategory(slug: string) {
-//     let blogs = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + `/api/blog/category/slug?categoryName=${slug}`);
-//     if(await blogs && await blogs.data) {
-//         blogs = await blogs.data
-//     }
-//     return blogs
-// }

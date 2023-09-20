@@ -1,91 +1,34 @@
 import React from "react";
 import AppSideBar from "../components/AppSidebar";
 import Content from "../components/Content";
+import Head from "next/head";
 
-const subcategories = [
-  {
-      name: 'All',
-      active: true,
-      url: '/subcategory/all'
-  },
-  {
-      name: 'Electronics',
-      active: false,
-      url: '/subcategory/electronics'
-  },
-  {
-      name: 'Clothing',
-      active: true,
-      url: '/subcategory/clothing'
-  },
-  {
-      name: 'Home Decor',
-      active: true,
-      url: '/subcategory/home-decor'
-  },
-  {
-      name: 'Books',
-      active: false,
-      url: '/subcategory/books'
-  },
-  {
-      name: 'Sports',
-      active: true,
-      url: '/subcategory/sports'
-  },
-  {
-      name: 'Beauty',
-      active: false,
-      url: '/subcategory/beauty'
-  },
-  {
-      name: 'All',
-      active: true,
-      url: '/subcategory/all'
-  },
-  {
-      name: 'Electronics',
-      active: false,
-      url: '/subcategory/electronics'
-  },
-  {
-      name: 'Clothing',
-      active: true,
-      url: '/subcategory/clothing'
-  },
-  {
-      name: 'Home Decor',
-      active: true,
-      url: '/subcategory/home-decor'
-  },
-  {
-      name: 'Books',
-      active: false,
-      url: '/subcategory/books'
-  },
-  {
-      name: 'Sports',
-      active: true,
-      url: '/subcategory/sports'
-  },
-  {
-      name: 'Beauty',
-      active: false,
-      url: '/subcategory/beauty'
-  }
-];
+export const metadata = {
+    title: "SocialDoze: Curated YouTube Video Lists for Every Niche",
+    description: "Explore handpicked YouTube video collections on SocialDoze. Discover top content in various categories through insightful blogs and stay updated with the latest trends.",
+    viewport: {
+        width: 'device-width',
+        initialScale: 1,
+        maximumScale: 1,
+    },
+};
 
 export default async function Home() {
   const {blogs, subcategories } = await fetchData();
-  console.log(blogs,subcategories)
   return (
-    <main className="overflow-hidden">
-      <Content 
-        subcategories={subcategories}
-        blogs={blogs}
-        title={'Home'}
-      />    
-    </main>
+    <div>
+        <Head>
+            <title> SocialDoze: Curated YouTube Video Lists for Every Niche </title>
+            <meta name="description" content="Explore handpicked YouTube video collections on SocialDoze. Discover top content in various categories through insightful blogs and stay updated with the latest trends." />
+        </Head>
+        <main className="overflow-hidden">
+            <Content 
+                subcategories={subcategories}
+                blogs={blogs}
+                title={'Home'}
+            />    
+        </main>
+    </div>
   )
 }
 

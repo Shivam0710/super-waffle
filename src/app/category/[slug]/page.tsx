@@ -1,11 +1,20 @@
 import Content from "@/components/Content";
 import axios from "axios";
-import { headers } from "next/headers";
 
-export default async function Category() {
-    const headersList = headers();
-    const activePath = headersList.get("x-invoke-path");
-    let slug = activePath?.split("/")[2]
+export async function generateMetadata({ params }: {
+    params: { slug: string }
+}) {
+    const category = await getCategoryBySlug(params.slug)
+    return {
+        title: category.seo_title,
+        description: category.seo_description
+    }
+}
+
+export default async function Category({ params }: {
+    params: { slug: string }
+}) {
+    let slug = params.slug
     let blogs = null
     let subcategories:any = []
     if(slug) {
@@ -41,4 +50,9 @@ async function getBlogsByCategory(slug: string) {
 async function getSubcategoriesByCategory(categoryId: string) {
     let subcategories = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + `/api/blog/subcategory/categoryId?id=${categoryId}`)
     return subcategories.data
+}
+
+async function getCategoryBySlug(slug: string) {
+    let category = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + `/api/blog/category/categoryName?name=${slug}`)
+    return category.data
 }

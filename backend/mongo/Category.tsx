@@ -20,11 +20,14 @@ export async function addCategory(data?: AddCategoryRequest) {
 }
 
 export async function getCategoryByName(categoryName: string) {
+  console.log(categoryName)
+  console.log("?????")
   const client = await clientPromise
   const db = client.db();
 
   const entries = db.collection(COLLECTION_NAME)
   const result = entries.findOne({ name: categoryName })
+  console.log(result)
   return result;
 }
 

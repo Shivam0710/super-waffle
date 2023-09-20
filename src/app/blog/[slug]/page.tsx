@@ -1,19 +1,24 @@
-import { headers } from "next/headers";
 import React from 'react'
 import axios from 'axios';
 import { modifyBlogContent } from '../../../../helper/utils';
 
-export default async function Blog() {
-  const headersList = headers();
-  const activePath = headersList.get("x-invoke-path");
-  const slug = activePath?.split("/")[2]
+export async function generateMetadata({ params }: {
+  params: { slug: string }
+}) {
+  const blog = await getBlog(params.slug)
+  return {
+      title: blog.seo_title,
+      description: blog.seo_description
+  }
+}
+
+export default async function Blog({ params }: {
+  params: { slug: string }
+}) {
+  const slug = params.slug
   let blog = null;
   if(slug) {
-    blog = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + `/api/blog/getBlogBySlug?slug=${slug}`);
-    if(await blog && await blog.data && await blog.data.blog) {
-      blog = await blog.data.blog
-      blog.content = await modifyBlogContent(blog.content)
-    }
+    blog = await getBlog(slug)
   }
 
   if(await !blog) return null
@@ -29,4 +34,15 @@ export default async function Blog() {
       </section>
     </div>
   )
+}
+
+async function getBlog(slug: any) {
+  let blog: any = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + `/api/blog/getBlogBySlug?slug=${slug}`);
+  if(await blog && await blog.data && await blog.data.blog) {
+    blog = await blog.data.blog
+    if(await blog.content) {
+      blog.content = await modifyBlogContent(blog.content)
+    }
+  }
+  return blog
 }
