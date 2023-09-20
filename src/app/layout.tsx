@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Poppins, Roboto } from "next/font/google";
 import { headers } from 'next/headers';
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'] })
 const poppins = Poppins({
@@ -27,6 +28,14 @@ export default function RootLayout({
         <div className='lg:grid lg:grid-cols-[auto,1fr] min-h-screen'>
           { showAppLayout && <AppSideBar />}
           {children}
+          <Script id="google-analytics">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-0RC2S82WBK');
+            `}
+          </Script>
         </div>
       </body>
     </html>
