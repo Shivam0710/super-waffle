@@ -7,6 +7,7 @@ export default function BlogListing({blogs}) {
         </div>
     )
 
+    console.log(blogs)
     return (
         <div className='flex mt-12 flex-wrap gap-6'>
             { blogs.map((blog, index) => {
