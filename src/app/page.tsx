@@ -2,6 +2,7 @@ import React from "react";
 import AppSideBar from "../components/AppSidebar";
 import Content from "../components/Content";
 import Head from "next/head";
+import axios from "axios";
 
 export const metadata = {
     title: "SocialDoze: Curated YouTube Video Lists for Every Niche",
@@ -44,13 +45,11 @@ async function fetchData() {
 }
 
 async function getAllBlogs() {
-  const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/blog/blog');
-  const data = await response.json();
-  return data.blogs;
+  const response = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + '/api/blog/blog')
+  return response.data.blogs;
 }
 
 async function getAllSubCategories() {
-    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/blog/subcategory');
-    const data = await response.json();
-    return data
+    const response = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + '/api/blog/subcategory')
+    return response.data
 }
