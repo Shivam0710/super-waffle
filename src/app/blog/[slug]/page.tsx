@@ -24,7 +24,7 @@ export default async function Blog({ params }: {
   if(await !blog) return null
   return (
     <div className='grow p-7 bg-[#11102E] min-h-screen'>
-      <h1 className='text-xl font-bold'>
+      <h1 className='text-xl font-bold lg:text-3xl'>
         {blog.title}
       </h1>
       <section 

@@ -63,5 +63,10 @@ body {
 }
 
 .blog-content p {
-  margin-bottom: 8px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-direction: column;
+  line-height: 34px;
+  align-items: center;
 }
