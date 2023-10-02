@@ -1,0 +1,27 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main  # You can adjust this to match your main branch name
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build and Push Docker Image
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+          IMAGE_NAME: shivamsagar888/super-waffle:latest  # Replace with your Docker Hub repository and image name
+        run: |
+          docker build -t $IMAGE_NAME .
+          echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
+          docker push $IMAGE_NAME
