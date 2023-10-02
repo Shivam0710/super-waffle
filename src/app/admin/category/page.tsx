@@ -31,6 +31,6 @@ export default async function Categories() {
 }
 
 async function getAllCategories() {
-    let categories = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + "/api/blog/category")
+    let categories = await axios.get("http://socialdoze.in" + "/api/blog/category")
     return categories.data
 }

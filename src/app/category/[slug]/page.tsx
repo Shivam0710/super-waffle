@@ -40,7 +40,7 @@ export default async function Category({ params }: {
 }
 
 async function getBlogsByCategory(slug: string) {
-    let blogs = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + `/api/blog/category/slug?categoryName=${slug}`);
+    let blogs = await axios.get("http://socialdoze.in" + `/api/blog/category/slug?categoryName=${slug}`);
     if(await blogs && await blogs.data) {
         blogs = await blogs.data
     }
@@ -48,11 +48,11 @@ async function getBlogsByCategory(slug: string) {
 }
 
 async function getSubcategoriesByCategory(categoryId: string) {
-    let subcategories = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + `/api/blog/subcategory/categoryId?id=${categoryId}`)
+    let subcategories = await axios.get("http://socialdoze.in" + `/api/blog/subcategory/categoryId?id=${categoryId}`)
     return subcategories.data
 }
 
 async function getCategoryBySlug(slug: string) {
-    let category = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + `/api/blog/category/categoryName?name=${slug}`)
+    let category = await axios.get("http://socialdoze.in" + `/api/blog/category/categoryName?name=${slug}`)
     return category.data
 }

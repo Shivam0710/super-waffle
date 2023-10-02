@@ -37,7 +37,7 @@ export default async function Blog({ params }: {
 }
 
 async function getBlog(slug: any) {
-  let blog: any = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + `/api/blog/getBlogBySlug?slug=${slug}`);
+  let blog: any = await axios.get("http://socialdoze.in" + `/api/blog/getBlogBySlug?slug=${slug}`);
   if(await blog && await blog.data && await blog.data.blog) {
     blog = await blog.data.blog
     if(await blog.content) {

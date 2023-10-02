@@ -41,7 +41,7 @@ async function fetchData(subcategoryId: any) {
 }
 
 async function getBlogsBySubcategoryId(subCategoryId: string) {
-    let blogs = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + `/api/blog/getBlogBySubcategoryId?id=${subCategoryId}`);
+    let blogs = await axios.get("http://socialdoze.in" + `/api/blog/getBlogBySubcategoryId?id=${subCategoryId}`);
     if(await blogs && await blogs.data) {
         return blogs.data.blogs
     }
@@ -50,7 +50,7 @@ async function getBlogsBySubcategoryId(subCategoryId: string) {
 }
 
 async function getSubcategoryByID(subCategoryId: any) {
-    let subcategory = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + `/api/blog/subcategory/id?id=${subCategoryId}`)
+    let subcategory = await axios.get("http://socialdoze.in" + `/api/blog/subcategory/id?id=${subCategoryId}`)
     if(await subcategory && await subcategory.data) {
         return subcategory.data
     }

@@ -9,9 +9,15 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     
+    env:
+      NEXT_PUBLIC_MONGO_URI: ${{secrets.MONGO_URI}}
+      NEXT_PUBLIC_BASE_URL: "http://socialdoze.in"
+      NEXT_PUBLIC_ADMIN_USERNAME: "marvel"
+      NEXT_PUBLIC_ADMIN_PASSWORD: "justiceleague"
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -22,6 +28,6 @@ jobs:
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
           IMAGE_NAME: shivamsagar888/super-waffle:latest  # Replace with your Docker Hub repository and image name
         run: |
-          docker build -t $IMAGE_NAME .
+          docker build -t $IMAGE_NAME . -f DockerFile
           echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
           docker push $IMAGE_NAME

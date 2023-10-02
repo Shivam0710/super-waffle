@@ -20,7 +20,7 @@ export default async function Content({ blogs, subcategories, title }) {
 
 
 async function getAllBlogs() {
-    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/blog/blog');
+    const response = await fetch("http://socialdoze.in" + '/api/blog/blog');
     const data = await response.json();
     return data.blogs;
 }

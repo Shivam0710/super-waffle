@@ -45,11 +45,11 @@ async function fetchData() {
 }
 
 async function getAllBlogs() {
-  const response = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + '/api/blog/blog')
+  const response = await axios.get("http://socialdoze.in" + '/api/blog/blog')
   return response.data.blogs;
 }
 
 async function getAllSubCategories() {
-    const response = await axios.get(process.env.NEXT_PUBLIC_BASE_URL + '/api/blog/subcategory')
+    const response = await axios.get("http://socialdoze.in" + '/api/blog/subcategory')
     return response.data
 }
